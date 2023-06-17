@@ -26,7 +26,7 @@ const CountryCapitalGame = ({ data }) => {
 
   useEffect(() => {
     randomizeCountries(data);
-  }, []);
+  }, [data]);
 
   const randomizeCountries = (values) => {
     // randomize the keys and values
