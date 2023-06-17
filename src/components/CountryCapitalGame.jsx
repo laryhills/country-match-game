@@ -146,6 +146,7 @@ const CountryCapitalGame = ({ data }) => {
   };
 
   useEffect(() => {
+    console.log(gameData);
     if (gameData.length === 0) {
       setMessage("Congratulations!");
     } else {
@@ -156,49 +157,59 @@ const CountryCapitalGame = ({ data }) => {
   return (
     <div>
       <h1>Country Capitals Game</h1>
-      {gameData.length ? (
-        gameData.map(([key, val], i) => (
-          <div key={i + 1}>
-            <button
-              style={{
-                margin: "5px",
-                backgroundColor:
-                  currentGameState.country.toLowerCase() ===
-                    key.toLowerCase() && !currentGameState.wrongPair
-                    ? "#0000ff"
-                    : (currentGameState.country.toLowerCase() ===
-                        key.toLowerCase() ||
-                        currentGameState.sameCountry.toLowerCase() ===
-                          key.toLowerCase()) &&
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {gameData.length ? (
+          gameData.map(([key, val], i) => (
+            <div key={i + 1}>
+              <button
+                style={{
+                  margin: "5px",
+                  backgroundColor:
+                    currentGameState.country.toLowerCase() ===
+                      key.toLowerCase() && !currentGameState.wrongPair
+                      ? "#0000ff"
+                      : (currentGameState.country.toLowerCase() ===
+                          key.toLowerCase() ||
+                          currentGameState.sameCountry.toLowerCase() ===
+                            key.toLowerCase()) &&
+                        currentGameState.wrongPair
+                      ? "#FF0000"
+                      : "",
+                }}
+                onClick={() => add(key, null)}
+              >
+                {key}
+              </button>
+              <button
+                style={
+                  currentGameState.capital === val &&
+                  !currentGameState.wrongPair
+                    ? { backgroundColor: "#0000ff" }
+                    : (currentGameState.capital.toLowerCase() ===
+                        val.toLowerCase() ||
+                        currentGameState.sameCapital.toLowerCase() ===
+                          val.toLowerCase()) &&
                       currentGameState.wrongPair
-                    ? "#FF0000"
-                    : "",
-              }}
-              onClick={() => add(key, null)}
-            >
-              {key}
-            </button>
-            <button
-              style={
-                currentGameState.capital === val && !currentGameState.wrongPair
-                  ? { backgroundColor: "#0000ff" }
-                  : (currentGameState.capital.toLowerCase() ===
-                      val.toLowerCase() ||
-                      currentGameState.sameCapital.toLowerCase() ===
-                        val.toLowerCase()) &&
-                    currentGameState.wrongPair
-                  ? { backgroundColor: "#FF0000" }
-                  : {}
-              }
-              onClick={() => add(null, val)}
-            >
-              {val}
-            </button>
-          </div>
-        ))
-      ) : (
-        <p>{message}</p>
-      )}
+                    ? { backgroundColor: "#FF0000" }
+                    : {}
+                }
+                onClick={() => add(null, val)}
+              >
+                {val}
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>{message}</p>
+        )}
+      </div>
     </div>
   );
 };
