@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import CountryCapitalGame from "./components/CountryCapitalGame";
+
+// 10 popular countries and their capitals
+const data = {
+  "United States": "Washington",
+  France: "Paris",
+  "United Kingdom": "London",
+  Germany: "Berlin",
+  China: "Beijing",
+  Japan: "Tokyo",
+  Italy: "Rome",
+  Russia: "Moscow",
+  Canada: "Ottawa",
+  Nigeria: "Abuja",
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CountryCapitalGame data={data} />
     </div>
   );
 }
